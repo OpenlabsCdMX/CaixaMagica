@@ -11,4 +11,6 @@
         <script src="<?php print(URL); ?>public/frameworks/JQuery/jquery-3.1.1.min.js"></script>
         <!-- Twitter Bootstrap 3 JS -->
         <script src="<?php print(URL); ?>public/frameworks/Bootstrap_3.3.7/js/bootstrap.min.js"></script>
+        <!-- UX (enhanced to start after app loads) -->
+        <script src="<?php print(URL); ?>public/js/ux.js"></script>
     </head>
