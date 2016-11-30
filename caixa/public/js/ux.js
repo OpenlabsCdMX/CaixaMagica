@@ -8,9 +8,12 @@ $(function(){
     //load Hamburguer menu with desktop menu content
     $("#hamburguer-content ul.nav").html($("#desktop-menu").html());
 
+    $("#sombra").height($("#hamburguer-content").height());
+
     //Hamburguer btn listenner
     $("#hamburguer").click(function(){
         let element = $("#"+$(this).data("target"));
+        let sombra = $("#sombra");
 
         if(element.data("hidden")){
           element.animate({
@@ -23,6 +26,7 @@ $(function(){
           },350);
           element.data("hidden",true);
         }
+        sombra.fadeToggle();
     });
 
 });

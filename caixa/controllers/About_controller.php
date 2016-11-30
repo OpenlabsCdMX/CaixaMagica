@@ -11,7 +11,7 @@
  *
  * @author pabhoz
  */
-class Index_controller extends Controller{
+class About_controller extends Controller{
 
     function __construct() {
         parent::__construct();
@@ -19,9 +19,9 @@ class Index_controller extends Controller{
 
     public function index()
     {
-        $this->view->mobileTitle = "Caixa Mágica"; //Mobile Version Title
-        $this->view->menuHL = "inicio";//menu highlighted option
-        $this->view->render($this,"index","Caixa Mágica");
+        $this->view->mobileTitle = "¿Qué es Caixa Mágica?"; //Mobile Version Title
+        $this->view->menuHL = "about";//menu highlighted option
+        $this->view->render($this,"index","Caixa Mágica | ¿Qué es Caixa Mágica?");
     }
 
 }

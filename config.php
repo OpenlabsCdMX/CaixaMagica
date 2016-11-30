@@ -24,6 +24,7 @@
     switch ($src) {
       case 'app':
 
+      //define('URL', "http:77192.168.0.79/caixamagica.eu/caixa/");
       define('URL', ROOT."caixa/");//If config file is shared then you'll need to add folder before ROOT
       define('MODULE','./views/modules/');
 
