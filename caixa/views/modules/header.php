@@ -5,6 +5,7 @@
         <title><?php print($this->title); ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="<?php print(URL); ?>public/styles/style.css">
+        <link rel="stylesheet" href="<?php print(URL); ?>public/styles/magicarousel.css">
         <!-- favicon -->
         <link rel="apple-touch-icon" sizes="57x57" href="<?php print(URL); ?>public/assets/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="<?php print(URL); ?>public/assets/favicon/apple-icon-60x60.png">
