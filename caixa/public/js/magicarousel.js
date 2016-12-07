@@ -10,6 +10,7 @@ $(function(){
 
   //use Modernizr.prefixed to get the prefixed version of boxOrdinalGroup
   var boxOrdinalGroup = Modernizr.prefixed( 'boxOrdinalGroup' );
+  var touches = { startX: 0, endX: 0};
 
   $.each($(".magicarousel"),function(){
 
@@ -20,31 +21,86 @@ $(function(){
       //init frontal item
       $(items.children[0]).addClass("frontal");
 
+      if(items.children.length > 1){//Si existe más de una opción...
       //Assign listeners to magicarousel childs
       for (var i = 0; i < items.children.length; i++) {
         //on click listener
         $(items.children[i]).click(function(){
-          console.debug("clicked");
-          let clicked = $(this).index();
-          var direction = -1;
-          //if clicked one is the last one (left one at beginning)
-          if(clicked == items.children.length-1 && active == 0){
-            direction = 1;
-            changeOrdinal(items);
-          }else{
-            //if clicked one is the first one element and active is the last
-            if(clicked == 0 && active == items.children.length-1){
-              direction = -1;
-            }else{//if the clicked one isn't first or last
-                direction = (clicked > active) ? -1 : 1;
+          if(!$(this).hasClass("frontal")){//if this item isn't the frontal one
+            let clicked = $(this).index();
+            var direction = -1;
+            //if clicked one is the last one (left one at beginning)
+            if(clicked == items.children.length-1 && active == 0){
+              direction = 1;
+              changeOrdinal(items);
+            }else{
+              //if clicked one is the first one element and active is the last
+              if(clicked == 0 && active == items.children.length-1){
+                direction = -1;
+              }else{//if the clicked one isn't first or last
+                  direction = (clicked > active) ? -1 : 1;
+              }
             }
+            active = clicked; //the clicked one now is the active one
+            //move the elements in an specific direction detected
+            moveIt($(this).parent(),items,direction,active);
+          }else{//if it is the frontal one
+            var el = $(this);
+            el.addClass("selected");
+            /*var origin = el.css("font-size");
+            var grow = parseInt(el.css("font-size"),10)+(parseInt(el.css("font-size"),10)*0.2);
+            console.log(grow);
+            el.animate({fontSize: grow+"px"},200,function(){
+              console.log(el);
+              el.animate({fontSize: origin},100);
+            });*/
           }
-          active = clicked; //the clicked one now is the active one
-          //move the elements in an specific direction detected
-          moveIt($(this).parent(),items,direction,active);
         });
-
+        //on touch move over carousel
+        $(magicarousel).bind("touchstart",function(e){
+          var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+          touches.startX = touch.clientX;
+        });
+        $(magicarousel).bind("touchend",function(e){
+          e.stopImmediatePropagation();
+          var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+          touches.endX = touch.clientX;
+          if((touches.startX - touches.endX) > 20){
+            //mover a la derecha
+            if(active == items.children.length - 1){
+              index = 0;
+            }else{
+              if(active == items.children.length - 2){
+                index = active;
+              }else{
+                index = active + 1;
+              }
+            }
+            $(items.children[index]).trigger("click");
+          }
+          if((touches.startX - touches.endX) < -20){
+            //mover a la izquierda
+            if(active == 0){
+              index = items.children.length - 1;
+            }else{
+              if(active == items.children.length - 1){
+                index = active;
+              }else{
+                index = active - 1;
+              }
+            }
+            $(items.children[index]).trigger("click");
+          }
+        });
       }
+
+    }else{//Si es solo una, centrala y no la dejes mover.
+      var ul = $(items.children[0]).parent();
+      ul[0].style.width = ul.parent()[0].offsetWidth+"px";
+      ul[0].style.marginLeft = 0;
+      console.debug();
+      items.children[0].style.margin = "auto";
+    }
 
       //change the ordinal of carousel to create infinite effect
       changeOrdinal(items);
@@ -57,6 +113,7 @@ $(function(){
   * @param newActive int. new active magicarousel element index
   */
   function moveIt(carousel,items,direction,newActive){
+    carousel.find(".selected").removeClass("selected");//remove selection if exists
     carousel.find(".frontal").removeClass("frontal");//remove frontal from old active one
     $(items.children[newActive]).addClass("frontal");//add frontal class to new active one
     //get the computed styles of items parent

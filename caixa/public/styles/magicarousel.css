@@ -46,9 +46,37 @@
     width:140px;
     height: 140px;
     margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    font-size: 120%;
 }
 .magicarousel li.frontal {
     width:180px;
     height: 180px;
     margin-top: 0;
+}
+.magicarousel li .option-icon span{
+  margin: 15px 0 0 0;
+  padding: 10px;
+  font-size: 15px !important;
+  border-radius: 200px;
+  border: 1px solid #393e8c;
+  color: #393e8c;
+}
+.magicarousel li.frontal .option-icon span{
+  font-size: 30px !important;
+  border: 3px solid #393e8c;
+}
+
+.magicarousel li.selected{
+  color: white;
+  background-color: #393e8c;
+  font-size: bold;
+  transition: all 0.3s ease;
+}
+
+.magicarousel li.selected .option-icon span{
+  font-size: 30px;
+  color: white;
+  border: 3px solid white;
 }

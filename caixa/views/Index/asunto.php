@@ -26,7 +26,13 @@
               <div class="magicarousel">
                 <ul>
                   <?php foreach($asunto->opciones as $opcion ) : ?>
-                    <li><?php echo $opcion->getTexto(); ?></li>
+                    <li data-id="<?php print($opcion->getId()); ?>"
+                        data-tipo="<?php print(get_class($opcion)); ?>">
+                        <?php print($opcion->getTexto()); ?>
+                        <div class="option-icon">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </div>  
+                    </li>
                   <?php endforeach; ?>
                 </ul>
               </div>
