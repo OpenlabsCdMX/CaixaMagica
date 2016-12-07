@@ -13,14 +13,11 @@
 
         <!-- Main component for a primary marketing message or call to action -->
         <div>
-            
-          <?php foreach($this->caixas as $caixa): ?>
+
           <div class="panel panel-default caixa" style="margin-top: 15px;">
-              <div><?php print_r($caixa->getNombre()); ?></div>
-              <div class="btn" onclick="location.href='<?php print(URL);?>Index/asunto/<?php print($caixa->getId()); ?>'">COMPARTIR</div>
-              <div class="btn" onclick="location.href='<?php print(URL);?>Index/resultado/<?php print($caixa->getId()); ?>'">VER RESULTADOS</div>
-          </div>
-          <?php endforeach; ?>
+              <div>Gracias por compartir tu punto de vista</div>
+              <div>¡Tu contribución es muy importante!</div>
+              <div class="btn" onclick="location.href='<?php print(URL); ?>Resultados/'">Ver Resultados</div>
         </div>
 
       </div> <!-- /container -->

@@ -23,15 +23,15 @@ class OpcionAbierta extends Model{
           'my_key'=>'id',
           'other_key'=>'id',
           'join_as'=>'OpcionAbierta_id',
-          'join_with'=>'Asunto_id',
+          'join_other_as'=>'Asunto_id',
           'join_table'=>'Asunto_has_opciones'
           ),
       'Comentarios'=>array(
           'class'=>'Comentario',
           'my_key'=>'id',
           'other_key'=>'id',
-          'join_as'=>'OpcionAbierta_id',
-          'join_with'=>'Comentario_id',
+          'join_self_as'=>'OpcionAbierta_id',
+          'join_other_as'=>'Comentario_id',
           'join_table'=>'OpcionAbierta_has_Comentario'
           )
       );

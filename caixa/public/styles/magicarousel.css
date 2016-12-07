@@ -80,3 +80,9 @@
   color: white;
   border: 3px solid white;
 }
+
+.commentBox{
+  border: 3px solid #393e8c;
+  width: 100%;
+  padding: 10px;
+}

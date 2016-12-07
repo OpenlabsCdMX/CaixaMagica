@@ -26,6 +26,12 @@ $(function(){
       for (var i = 0; i < items.children.length; i++) {
         //on click listener
         $(items.children[i]).click(function(){
+          //if this option group have a commentBox displayed, hide it until an option is selected again
+          var cb = $(this).parent().parent().parent().parent().children(".commentBox");
+          if(cb.length){
+            //console.log(cb);
+            cb[0].style.display = "none";
+          }
           if(!$(this).hasClass("frontal")){//if this item isn't the frontal one
             let clicked = $(this).index();
             var direction = -1;
@@ -47,13 +53,25 @@ $(function(){
           }else{//if it is the frontal one
             var el = $(this);
             el.addClass("selected");
-            /*var origin = el.css("font-size");
-            var grow = parseInt(el.css("font-size"),10)+(parseInt(el.css("font-size"),10)*0.2);
-            console.log(grow);
-            el.animate({fontSize: grow+"px"},200,function(){
-              console.log(el);
-              el.animate({fontSize: origin},100);
-            });*/
+            //play audio
+            var audio = new Audio('../../public/assets/sounds/Pop.mp3');
+            audio.play();
+
+            //if this is an OpcionAbierta do!
+            if(el.data("tipo") == "OpcionAbierta"){
+              //if commentBox Doesn't exist create one
+              var cb = el.parent().parent().parent().parent().children(".commentBox");
+              if(cb.length < 1){
+                var textArea = document.createElement("textArea");
+                textArea.className = "commentBox";
+                textArea.placeholder = "Escribe aquí...";
+                var contenedor = el.parent().parent().parent().parent();
+                contenedor.append(textArea);
+              }else{
+                cb[0].style.display = "block";
+              }
+            }
+
           }
         });
         //on touch move over carousel
