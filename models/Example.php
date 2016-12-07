@@ -26,6 +26,16 @@ class Example extends Model {
           )
       );
 
+   private $known_as = array(
+        
+            'Owner' => array(
+                'class' => 'Tienda',
+                'join_as' => 'id',
+                'join_with' => 'owner'
+            )
+        
+        );
+
   private $has_many = array(
       'RuleName'=>array(
           'class'=>'[Obj class expected]',

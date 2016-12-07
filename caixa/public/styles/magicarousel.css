@@ -1,4 +1,4 @@
-#magicarousel {
+.magicarousel {
     overflow:hidden;
     padding:0;
     position:relative;
@@ -6,22 +6,22 @@
 }
 
 /* navigation items */
-#magicarousel .navigation {
+.magicarousel .navigation {
     background:rgba(0,0,0,0.1);
     display:block;
     position:absolute;
     text-align:center;
 }
-#magicarousel .previous {
+.magicarousel .previous {
     left:0;
 }
 
-#magicarousel .next {
+.magicarousel .next {
     right:0;
 }
 
-/* magicarousel container */
-#magicarousel ul {
+/*.magicarousel container */
+.magicarousel ul {
     -moz-box-orient:horizontal;
     -ms-box-orient:horizontal;
     -webkit-box-orient:horizontal;
@@ -40,14 +40,14 @@
     padding:0;
 }
 
-#magicarousel li {
+.magicarousel li {
     border:solid 1px #333;
     margin-right:10px;
     width:140px;
     height: 140px;
     margin-top: 20px;
 }
-#magicarousel li.frontal {
+.magicarousel li.frontal {
     width:180px;
     height: 180px;
     margin-top: 0;

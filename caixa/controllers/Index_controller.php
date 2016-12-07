@@ -19,9 +19,18 @@ class Index_controller extends Controller{
 
     public function index()
     {
+        $this->view->caixas = Caixa_bl::get();
         $this->view->mobileTitle = "Caixa Mágica"; //Mobile Version Title
         $this->view->menuHL = "inicio";//menu highlighted option
         $this->view->render($this,"index","Caixa Mágica");
+    }
+    
+    public function asunto($idCaixa)
+    {
+        $this->view->asuntos = Caixa_bl::getAsuntos($idCaixa);
+        $this->view->mobileTitle = "Caixa Mágica"; //Mobile Version Title
+        $this->view->menuHL = "inicio";//menu highlighted option
+        $this->view->render($this,"asunto","Caixa Mágica");
     }
 
 }
