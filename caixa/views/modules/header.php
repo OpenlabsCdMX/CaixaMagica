@@ -24,7 +24,7 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="<?php print(URL); ?>public/frameworks/Bootstrap_3.3.7/css/bootstrap.min.css">
         <!-- JQuery -->
-        <script src="<?php print(URL); ?>public/frameworks/JQuery/jquery-3.1.1.min.js"></script>
+        <script src="<?php print(URL); ?>public/frameworks/jQuery/jquery-3.1.1.min.js"></script>
         <!-- Twitter Bootstrap 3 JS -->
         <script src="<?php print(URL); ?>public/frameworks/Bootstrap_3.3.7/js/bootstrap.min.js"></script>
         <!-- UX (enhanced to start after app loads) -->

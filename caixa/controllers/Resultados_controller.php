@@ -27,40 +27,52 @@ class Resultados_controller extends Controller{
         //obtenemos los asuntos de la caja identificada
         $asuntos = Caixa_bl::getAsuntos($caixa->getId());
         //obtener las espuestas a cada asunto de la caja!
-        $Abiertas = 0;
-        $Multiples = 0;
-        $Pila = 0;
         $opciones = ["Abiertas"=>[],"Multiples"=>[],"Pila"=>[]];
         
-        foreach ($asuntos as $asunto) {
-            //print_r($asunto->opciones);
+        $repsuestas = [];
+        
+        foreach ($asuntos as $key => $asunto) {
+            //Contador de participación por tipo de respuesta
+            
+            $respuestas[$key]["asunto"] = $asunto->getTexto();
+            $respuestas[$key]["respuestas"] = [];
+            
             for ($index = 0; $index < count($asunto->opciones); $index++) {
                 $tipo = get_class($asunto->opciones[$index]);
                 switch ($tipo) {
                     case "OpcionAbierta":
-                        //print_r(Opciones_bl::countAnswers($opcion));
+                        $respuestas[$key]["respuestas"]["Abiertas"][] = ["texto"=>$asunto->opciones[$index]->getTexto(),
+                        "votos"=>Opciones_bl::countAnswers($asunto->opciones[$index]),
+                        "comentarios"=>$comments = $asunto->opciones[$index]->getMyComments(true)];
                     break;
                     case "OpcionMultiple":
-                        $Multiples++;
-                        $opciones["Multiples"][] = ["texto"=>$asunto->opciones[$index]->getTexto(),
+                        $respuestas[$key]["respuestas"]["Multiples"][] = ["texto"=>$asunto->opciones[$index]->getTexto(),
                         "votos"=>Opciones_bl::countAnswers($asunto->opciones[$index])];
                     break;
                     case "OpcionPila":
-
+                        $respuestas[$key]["respuestas"]["Pila"] = ["texto"=>$asunto->opciones[$index]->getTexto(),
+                        "votos"=>Opciones_bl::countAnswers($asunto->opciones[$index])];
                     break;
                 }
             }
         }
-        $opciones["Abiertas"]["total"] = $Abiertas;
-        $opciones["Multiples"]["total"] = $Multiples;
-        $opciones["Pila"]["total"] = $Pila;
+        //contamos la cantidad de opciones por asunto para saber la proporción de votos por opción
+        foreach ($respuestas as $index => $tipos) {
+            foreach ($tipos["respuestas"] as $key => $respuesta) {
+                $respuestas[$index]["respuestas"][$key]["opciones"] = count($respuesta);
+                $totalVotos = 0;
+                foreach ($respuesta as $r) {
+                   $totalVotos += $r["votos"];
+                }
+                $respuestas[$index]["respuestas"][$key]["total_votos"] = $totalVotos;
+            }
+        }
         
-        print_r($opciones);
-        /*
+        $this->view->respuestas = $respuestas;
         $this->view->mobileTitle = "Resultados"; //Mobile Version Title
         $this->view->menuHL = "resultados";//menu highlighted option
         $this->view->render($this,"index","Caixa Mágica | Resultados");
-         */
+         
     }
 
 }

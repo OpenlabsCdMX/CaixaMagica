@@ -68,5 +68,14 @@ class OpcionAbierta extends Model{
   function setHas_many($has_many) {
       $this->has_many = $has_many;
   }
+  
+  function getMyComments($returnArray = false){
+      $comments = Comentario::whereR("Comentario_id", "OpcionAbierta_id", $this->getId(), "OpcionAbierta_has_comentario");
+      foreach ($comments as $key => $comment) {
+          $comments[$key] = Comentario::getById($comment["Comentario_id"]);
+          $comments[$key] = ($returnArray) ? $comments[$key]->toArray() : $comments[$key];
+      }
+      return $comments;
+  }
 
 }
