@@ -38,6 +38,7 @@
                           <?php elseif(($key."" != "opciones" && $key."" != "total_votos")): ?>
                                 <div class="comment">
                                   <?php print($respuesta["texto"]); ?>
+                                    <div style="float:right"><?php print($respuesta["votos"]." de ".$tv." (".(($respuesta["votos"]/$tv)*100)."%)"); ?></div>
                                     <div class="filleable" data-percent="<?php print(($respuesta["votos"]/$tv)); ?>"></div>
                                 </div>
                           <?php endif; ?>

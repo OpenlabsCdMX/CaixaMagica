@@ -70,7 +70,7 @@ class OpcionAbierta extends Model{
   }
   
   function getMyComments($returnArray = false){
-      $comments = Comentario::whereR("Comentario_id", "OpcionAbierta_id", $this->getId(), "OpcionAbierta_has_comentario");
+      $comments = Comentario::whereR("Comentario_id", "OpcionAbierta_id", $this->getId(), "OpcionAbierta_has_Comentario");
       foreach ($comments as $key => $comment) {
           $comments[$key] = Comentario::getById($comment["Comentario_id"]);
           $comments[$key] = ($returnArray) ? $comments[$key]->toArray() : $comments[$key];
