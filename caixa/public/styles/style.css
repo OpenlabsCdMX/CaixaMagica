@@ -139,6 +139,25 @@ html,body{
 	text-align: center;
 	margin: 0 0 10px 0;
 }
+
+ul.resultsList li{
+  list-style: none;
+}
+li .comment{
+  padding: 10px;
+  border: 1px solid #393e8c;
+  border-radius: 5px;
+  margin: 5px;
+}
+li .votes{
+  font-size: 70%;
+}
+
+.filleable{
+  width: 0%;
+  transition: all 1s ease;
+  background-color: rgba(0,0,100,0.2);
+}
 /** Media Queries */
 
 /* iPad */

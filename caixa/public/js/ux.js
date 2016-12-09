@@ -31,6 +31,14 @@ $(function(){
         sombra.fadeToggle();
     });
 
+    $.each($(".filleable"),function(i){
+        var el = $(this);
+        console.log(el.parent()[0].offsetWidth);
+        //los 20 que se restan son por el padding, automatizar esto
+        el[0].style.width = (((el.parent()[0].offsetWidth) * el.data("percent"))-20)+"px";
+        el[0].style.height = el.parent()[0].offsetHeight+"px";
+    });
+
     function toggleFullScreen() {
       var doc = window.document;
       var docEl = doc.documentElement;

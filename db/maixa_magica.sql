@@ -301,9 +301,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caixa_magica`;
-INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (1, '¿Qué te gusta en la escuela?', 1);
-INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (2, '¿Qué mejorarías en la escuela?', 1);
-INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (3, '¿Estás enamorado de alguien de la escuela?', 1);
+INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (1, '¿Qué te llevas de ciudades que aprenden?', 1);
+INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (2, '¿Qué harías diferente en un próximo laboratorio ciudadano?', 1);
+INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (3, '¿Cómo mejorarías la experiencia de uso de Caixa Mágica?', 1);
+INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (4, '¿Estás enamorado de alguien de ciudades que aprenden?', 1);
 
 COMMIT;
 
@@ -313,8 +314,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caixa_magica`;
-INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (1, 'Me gusta de mi escuela...');
-INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (2, 'Mejoraría ...');
+INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (1, 'Me llevo...');
+INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (2, 'Yo haría...');
+INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (3, 'La mejoraría...');
 
 COMMIT;
 
@@ -350,9 +352,10 @@ START TRANSACTION;
 USE `caixa_magica`;
 INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (1, 1, 1, NULL, NULL);
 INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (2, 2, 2, NULL, NULL);
-INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (3, 3, NULL, 1, NULL);
-INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (4, 3, NULL, 2, NULL);
-INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (5, 3, NULL, 3, NULL);
+INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (3, 3, 3, NULL, NULL);
+INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (4, 4, NULL, 1, NULL);
+INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (5, 4, NULL, 2, NULL);
+INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (6, 4, NULL, 3, NULL);
 
 COMMIT;
 

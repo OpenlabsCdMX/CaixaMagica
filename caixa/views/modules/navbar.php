@@ -20,7 +20,7 @@
     <!-- Desktop Menu -->
     <ul id="desktop-menu" class="nav navbar-nav">
       <li <?php if($this->menuHL == "inicio"){ print('class="active"');} ?>><a href="<?php print(URL); ?>">Inicio</a></li>
-      <li <?php if($this->menuHL == "resultados"){ print('class="active"');} ?>><a href="<?php print(URL."Resultados/"); ?>">Resultados</a></li>
+      <!--li <?php if($this->menuHL == "resultados"){ print('class="active"');} ?>><a href="<?php print(URL."Resultados/"); ?>">Resultados</a></li-->
       <li <?php if($this->menuHL == "about"){ print('class="active"');} ?>><a href="<?php print(URL."About/"); ?>">¿Qué es caixa mágica?</a></li>
       <li <?php if($this->menuHL == "contacto"){ print('class="active"');} ?>><a href="<?php print(URL."Contacto/"); ?>">Contacto</a></li>
     </ul>

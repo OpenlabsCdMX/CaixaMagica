@@ -14,9 +14,39 @@
         <!-- Main component for a primary marketing message or call to action -->
         <div>
           <h1>Resultados</h1>
-          <?php print_r($this->respuestas); ?>
-          <?php foreach ($this->respuestas as $respuesta): ?>
-          <div class="title"><?php print_r($respuesta["asunto"]);?></div>
+          <?php foreach ($this->respuestas as $asuntos): ?>
+          <h3 class="title"><?php print_r($asuntos["asunto"]);?></h3>
+          <ul class="resultsList">
+              <?php foreach ($asuntos["respuestas"] as $respuestas): ?>
+              <li>
+                  <ul>
+                  <?php foreach ($respuestas as $key => $respuesta): ?>
+                      <li>
+                          <?php if(isset($respuesta["comentarios"])): ?>
+                          <div>Comentarios:</div>
+                          <ul>
+                          <?php foreach ($respuesta["comentarios"] as $comentario): ?>
+                              <li>
+                                  <div class="comment">
+                                      <?php print($respuesta["texto"]." ".$comentario["texto"]); ?>
+                                      <span class="votes">Votos: <?php print_r($comentario["votos"]) ?></span>
+                                  </div>
+                              </li>
+                          <?php endforeach; ?>
+                          </ul>
+                          <?php $tv = 0; if($key == "total_votos"){ $tv = $respuestas["total_votos"]; } ?>
+                          <?php elseif(($key."" != "opciones" && $key."" != "total_votos")): ?>
+                                <div class="comment">
+                                  <?php print($respuesta["texto"]); ?>
+                                    <div class="filleable" data-percent="<?php print(($respuesta["votos"]/$tv)); ?>"></div>
+                                </div>
+                          <?php endif; ?>
+                      </li>
+                  <?php endforeach; ?>
+                  </ul>
+              </li>
+              <?php endforeach; ?>
+          </ul>
           <?php endforeach; ?>
         </div>
 
