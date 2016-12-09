@@ -79,7 +79,7 @@
           }
         }).done(function(r){
           $("#loader").css("display","none");
-          document.location.href = "<?php print(URL); ?>Index/gracias/";
+          document.location.href = "<?php print(URL); ?>Index/gracias/?id="+$(".magicarousel li").data("id")+"&tipo="+$(".magicarousel li").data("tipo");
         });
       }
     </script>

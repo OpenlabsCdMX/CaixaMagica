@@ -39,5 +39,19 @@ class Opciones_bl{
       
       return $opciones;
   }
+  
+  public function getCaixa($opcion){
+      $tipo = get_class($opcion);
+      $asunto = Asunto::whereR("Asunto_id", $tipo."_id", $opcion->getId(),"Asunto_has_opciones")[0]["Asunto_id"];
+      $asunto = Asunto::getById($asunto);
+      $caixa = Caixa::getById($asunto->getCaixa_id());
+      return $caixa;
+  }
+  
+  public function countAnswers($opcion){
+      $tipo = get_class($opcion);
+      $count = Model::whereR("COUNT(".$tipo."_id)", $tipo."_id", $opcion->getId(),"Respuestas")[0]["COUNT(".$tipo."_id)"];
+      return $count;
+  }
 
 }

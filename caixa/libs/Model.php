@@ -43,8 +43,8 @@ class Model {
     public static function whereR($attr,$field, $value, $tableR){
             self::getConnection();
             $sql = "SELECT ".$attr." FROM ".$tableR." WHERE ".$field." = :".$field;
+            //print_r($sql);
             $results = self::$db->select($sql, array(":".$field=>$value) );
-
             return $results;
     }
 

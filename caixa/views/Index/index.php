@@ -18,7 +18,8 @@
           <div class="panel panel-default caixa" style="margin-top: 15px;">
               <div><?php print_r($caixa->getNombre()); ?></div>
               <div class="btn" onclick="location.href='<?php print(URL);?>Index/asunto/<?php print($caixa->getId()); ?>'">COMPARTIR</div>
-              <div class="btn" onclick="location.href='<?php print(URL);?>Index/resultado/<?php print($caixa->getId()); ?>'">VER RESULTADOS</div>
+              <!--div class="btn" onclick="location.href='<?php print(URL);?>Index/resultado/<?php print($caixa->getId()); ?>'">VER RESULTADOS</div-->
+              <div class="btn" onclick="alert('Oops, aún no puedes ver los resultados :)');">VER RESULTADOS</div>
           </div>
           <?php endforeach; ?>
         </div>

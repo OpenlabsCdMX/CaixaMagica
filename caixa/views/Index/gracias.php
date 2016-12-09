@@ -17,8 +17,10 @@
           <div class="panel panel-default caixa" style="margin-top: 15px;">
               <div>Gracias por compartir tu punto de vista</div>
               <div>¡Tu contribución es muy importante!</div>
-              <div class="btn" onclick="location.href='<?php print(URL); ?>Resultados/'">Ver Resultados</div>
-        </div>
+              <div class="btn" onclick="location.href='<?php print(URL); ?>Resultados/index/?id=<?php print($this->idOpcion); ?>&tipo=<?php print($this->tipoOpcion); ?>'">Ver Resultados</div>
+              <!--div class="btn" onclick="alert('Estamos trabajando en esta sección, pero no te preocupes, pronto estará lista.')">Ver Resultados</div-->
+              <div class="btn" onclick="location.href='<?php print(URL); ?>'">Volver al inicio</div>
+          </div>
 
       </div> <!-- /container -->
     </div>

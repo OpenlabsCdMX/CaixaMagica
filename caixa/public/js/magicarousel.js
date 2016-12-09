@@ -21,7 +21,13 @@ $(function(){
       //init frontal item
       $(items.children[0]).addClass("frontal");
 
-      if(items.children.length > 1){//Si existe más de una opción...
+      if(items.children.length < 2){//Si existe más de una opción...
+        var ul = $(items.children[0]).parent();
+        ul[0].style.width = ul.parent()[0].offsetWidth+"px";
+        ul[0].style.marginLeft = 0;
+        console.debug();
+        items.children[0].style.margin = "auto";
+      }
       //Assign listeners to magicarousel childs
       for (var i = 0; i < items.children.length; i++) {
         //on click listener
@@ -111,15 +117,6 @@ $(function(){
           }
         });
       }
-
-    }else{//Si es solo una, centrala y no la dejes mover.
-      var ul = $(items.children[0]).parent();
-      ul[0].style.width = ul.parent()[0].offsetWidth+"px";
-      ul[0].style.marginLeft = 0;
-      console.debug();
-      items.children[0].style.margin = "auto";
-    }
-
       //change the ordinal of carousel to create infinite effect
       changeOrdinal(items);
   });
