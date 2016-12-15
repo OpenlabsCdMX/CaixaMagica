@@ -1,5 +1,5 @@
 # CaixaMagica
-========
+----------
 
 #### Proyecto Caja Mágica ####
 
@@ -20,20 +20,20 @@ La caja se constituye en su parte de infraestructura y desarrollo (hardware y so
 
 A nivel de hardware:
 
-1 Router con capacidad de Wifi
-1 Raspberri Pi 2 con memoria SD 8GB
-1 Powerbank con doble alimentación (para el Router y la Raspi)
+- 1 Router con capacidad de Wifi
+- 1 Raspberri Pi 2 con memoria SD 8GB
+- 1 Powerbank con doble alimentación (para el Router y la Raspi)
 
 A nivel de Software:
 
-Frontend:
+### Frontend: ###
 - HTML5
 - CSS3
 - JQuery 3.1.1
 - Bootstrap 3.3.7
 - Modernizr
 
-Backend:
+### Backend: ###
 - PHP 5.6
 - Apache Server 2.2
 - MariaDB / MySQL
