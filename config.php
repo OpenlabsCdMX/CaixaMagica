@@ -24,13 +24,18 @@
     switch ($src) {
       case 'app':
 
-      define('URL', "http://10.10.1.12/caixamagica.eu/master/caixa/");
-      //define('URL', ROOT."caixa/");//If config file is shared then you'll need to add folder before ROOT
+      //define('URL', "http://10.10.1.12/caixamagica.eu/master/caixa/");
+      define('URL', ROOT."caixa/");//If config file is shared then you'll need to add folder before ROOT
       define('MODULE','./views/modules/');
 
       break;
 
       case 'api':
         define('URL', ROOT."api/");
+      break;
+
+      case 'magia':
+      define('URL', ROOT."magia/");//If config file is shared then you'll need to add folder before ROOT
+      define('MODULE','./views/modules/');
       break;
     }
