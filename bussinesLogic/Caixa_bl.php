@@ -13,13 +13,13 @@
  */
 class Caixa_bl {
 
-  public function get($id = null){
+  public function get($id = false, $arr = false){
       if($id){
           return Caixa::getById($id);
       }else{
           $caixas = Caixa::getAll();
           foreach ($caixas as $caixa) {
-             $r[] = Caixa::instanciate($caixa);
+             $r[] = ($arr == false)? Caixa::instanciate($caixa) : $caixa;
           }
           return $r;
       }
@@ -31,5 +31,10 @@ class Caixa_bl {
           $asunto->opciones = Opciones_bl::getByAsunto($asunto->getId());
       }
       return $asuntos;
+  }
+  
+  public function create($data){
+      $caixa = new Caixa(null, $data["nombre"], $data["fecha_ini"], $data["fecha_fin"]);
+      return $caixa->create();
   }
 }

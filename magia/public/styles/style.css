@@ -1,0 +1,76 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 16/03/2016, 10:31:44 AM
+    Author     : PabloAnibal
+*/
+.main-header .logo{
+  background-color: #1a2226 !important;
+  color: rgb(100,100,100);
+  padding: 0 8px !important;
+  text-align: left;
+  border-bottom: 1px solid #3C8DBC !important;
+}
+
+.main-header .logo img,.main-header .logo p{
+  display: inline;
+}
+
+.main-header .logo img{
+  height: 35px;
+  margin-top: -4px;
+}
+
+.main-header .logo .logo-lg {
+  display: inline !important;
+}
+
+.error-page>.error-content{
+  height: 200px;
+  vertical-align: middle;
+}
+.error-page>.error-content h3{
+  padding-top: 12%;
+}
+
+.login-logo img{
+  width: 200px;
+  margin-left: -40px;
+}
+
+.fancy-container{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+.fancy-box{
+  flex: 33%;
+  padding: 15px;
+  margin: 10px 5px;
+  color:#D33724 !important;
+  background-color: white !important;
+  border: 2px solid #D33724;
+  border-radius: 4px;
+  transition: all 0.5s ease;
+}
+.fancy-box:hover{
+  border: 2px solid transparent;
+  background-color:#DD4B39 !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+.fancy-table>thead>tr>th{
+  text-align: center !important;
+}
+
+.iconAnchor:hover{
+  cursor: pointer !important;
+}
+
+.fancy-option{
+  font-size: 200% !important;
+}
