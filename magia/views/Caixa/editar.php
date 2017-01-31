@@ -71,7 +71,7 @@
                                 <div class="collapsible">
                                 <div class="box-body">
                                     <div class="form-group">
-                                        <input data-id="<?php print($asunto->getId()); ?>" name="nombre" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($asunto->getTexto()); ?>">
+                                        <input data-id="<?php print($asunto->getId()); ?>" name="asunto_texto" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($asunto->getTexto()); ?>">
                                     </div>
                                 </div>
                                 <p>
@@ -104,7 +104,7 @@
                             } ?>>Opción Pila (No soportado aún)</option>
                                                     </select>
                                                     <label>Opción</label>
-                                                    <input data-id="<?php print($opcion->getId()); ?>" name="nombre" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($opcion->getTexto()); ?>">
+                                                    <input data-id="<?php print($opcion->getId()); ?>" name="opcion_texto" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($opcion->getTexto()); ?>">
                                                 </div>
                                             </div>
                                             <!-- /.box-body -->
@@ -121,7 +121,7 @@
                             <div class="box-footer">
                                 <button class="option-btn btn-block btn-flat btn-danger" style="font-weight:bold;">
                                   <i class="ion-android-add-circle"></i>&nbsp;
-                                  Agregar otra opción al Asunto</button>
+                                  Agregar opción al Asunto</button>
                             </div>
                             <!-- /.box -->
 
@@ -135,7 +135,7 @@
                     <div class="box-footer">
                         <button class="issue-btn btn-block btn-flat btn-warning" style="font-weight:bold;">
                           <i class="ion-android-add-circle"></i>&nbsp;
-                          Agregar otro asunto a la Caixa</button>
+                          Agregar asunto a la Caixa</button>
                     </div>
                 </div>
                 <!-- /.box -->
@@ -178,9 +178,52 @@
         }
       }
 
-      $(".issue-btn").click(function(){
-        alert("adding issue");
+      $(".issue-btn").click(function(e){
+        e.preventDefault();
+        addIssue($(this));
       });
+
+      function addIssue(el){
+
+        var area = el.parent().parent();
+        $.ajax({
+          url: "<?php echo MODULE.'templates/issue.php'; ?>",
+          method:"GET"
+        }).done(function(r){
+            area.append(r);
+
+            $(".toggle-box-btn").unbind("click").click(function(){
+              toggleSlideBox($(this));
+            });
+
+            $(".option-btn").unbind("click").on("click",function(e){
+              e.preventDefault();
+              addOption($(this));
+            });
+        });
+
+      }
+
+      $(".option-btn").click(function(e){
+        e.preventDefault();
+        addOption($(this));
+      });
+
+      function addOption(el){
+
+        var area = el.parent().parent();
+        console.debug(area);
+        $.ajax({
+          url: "<?php echo MODULE.'templates/option.php'; ?>",
+          method:"GET"
+        }).done(function(r){
+            area.append(r);
+            $(".toggle-box-btn").unbind("click").click(function(){
+              toggleSlideBox($(this));
+            });
+        });
+
+      }
 
       $(".option-btn").click(function(){
         alert("adding option");
