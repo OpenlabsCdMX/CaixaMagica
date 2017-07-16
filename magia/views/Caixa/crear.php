@@ -78,6 +78,7 @@
       var response = JSON.parse(r);
       if(response["error"] == 0){
         alert("Wow, una nueva Caixa ha sido creada!");
+        <?php $this->reloadThis("Caixa/listar/"); ?>
       }else{
         alert("Se ha producido un error :(");
       }

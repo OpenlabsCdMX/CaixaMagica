@@ -28,17 +28,18 @@
                     <!-- form start -->
                     <div class="box-body">
                         <div class="form-group">
+                        <input name="caixa-id" type="hidden" class="form-control" value="<?php print($this->caixa->getId()); ?>">
                             <label>Titulo de la Caixa</label>
-                            <input name="nombre" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($this->caixa->getNombre()); ?>">
+                            <input name="caixa-nombre" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($this->caixa->getNombre()); ?>">
                         </div>
                         <p class="help-block">Si la caixa va a ser permanente deje sin diligenciar las fechas de inicio y fin.</p>
                         <div class="form-group">
                             <label>Fecha inicial</label>
-                            <input name="fecha_ini" type="date" class="form-control" placeholder="2017-01-24" value="<?php print($this->caixa->getFecha_ini()); ?>">
+                            <input name="caixa-fecha_ini" type="date" class="form-control" placeholder="2017-01-24" value="<?php print($this->caixa->getFecha_ini()); ?>">
                         </div>
                         <div class="form-group">
                             <label>Fecha final</label>
-                            <input name="fecha_fin" type="date" class="form-control" placeholder="2017-01-30" value="<?php print($this->caixa->getFecha_fin()); ?>">
+                            <input name="caixa-fecha_fin" type="date" class="form-control" placeholder="2017-01-30" value="<?php print($this->caixa->getFecha_fin()); ?>">
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -50,7 +51,7 @@
 
             <div class="col-md-12">
                 <!-- general form elements -->
-                <div class="box box-success">
+                <div class="box box-success issues-container">
                     <div class="box-header with-border">
                         <h3 class="box-title">Asuntos de la Caixa <?php print($this->caixa->getId()); ?></h3>
                         <i class="toggle-box-btn pull-right ion-android-remove" style="cursor:pointer;"></i>
@@ -60,9 +61,9 @@
                         </br>
                         <div class="col-md-12">
                             <!-- general form elements -->
-                            <div class="box box-warning">
+                            <div class="box box-warning topic-container anIssue">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Asunto <?php print($asunto->getId()); ?></h3>
+                                    <h3 class="box-title">Asunto <?php print($asunto->getId()); ?>: <?php print($asunto->getTexto());  ?></h3>
                                     <i class="toggle-box-btn pull-right ion-android-remove" style="cursor:pointer;"></i>
                                 </div>
                                 <!-- /.box-header -->
@@ -71,19 +72,21 @@
                                 <div class="collapsible">
                                 <div class="box-body">
                                     <div class="form-group">
-                                        <input data-id="<?php print($asunto->getId()); ?>" name="asunto_texto" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($asunto->getTexto()); ?>">
+                                        <label>Contenido del asunto:</label>
+                                        <input data-id="<?php print($asunto->getId()); ?>" data-caixaid="<?php print($this->caixa->getId()); ?>" name="asunto-texto" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($asunto->getTexto()); ?>">
                                     </div>
                                 </div>
-                                <p>
+                                <p style="margin-left:10px;">
                                     Opciones del asunto:
                                 </p>
                                 <!-- /.box-body -->
+                                <div class="daOptions">
                                 <?php foreach ($asunto->opciones as $n => $opcion): ?>
 
 
                                     <div class="collapsible col-md-12">
                                         <!-- general form elements -->
-                                        <div class="box box-danger">
+                                        <div class="box box-danger option-container">
                                             <div class="box-header with-border">
                                                 <h3 class="box-title">Opción <?php print($n + 1); ?></h3>
                                             </div>
@@ -104,7 +107,8 @@
                             } ?>>Opción Pila (No soportado aún)</option>
                                                     </select>
                                                     <label>Opción</label>
-                                                    <input data-id="<?php print($opcion->getId()); ?>" name="opcion_texto" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($opcion->getTexto()); ?>">
+                                                    <input data-id="<?php print($opcion->getId()); ?>"
+                                                    data-asuntoid="<?php print($asunto->getId()); ?>" name="opcion-texto" type="text" class="form-control" placeholder="Ej: Te invitamos a compartir tu opinión" value="<?php print($opcion->getTexto()); ?>">
                                                 </div>
                                             </div>
                                             <!-- /.box-body -->
@@ -115,15 +119,18 @@
                                     </div>
 
                         <?php endforeach; ?>
+                        </div>
                                 </form>
-                            </div>
-
-                            <div class="box-footer">
+                                
+                                <div class="box-footer">
                                 <button class="option-btn btn-block btn-flat btn-danger" style="font-weight:bold;">
                                   <i class="ion-android-add-circle"></i>&nbsp;
                                   Agregar opción al Asunto</button>
                             </div>
                             <!-- /.box -->
+                            </div>
+
+                            
 
                         </div>
                       </div>
@@ -144,7 +151,7 @@
 
             <div class="box-footer">
                 <button class="update-btn btn-block btn-flat btn-primary" style="font-weight:bold;">
-                  <i class="ion-android-add-circle"></i>&nbsp;
+                  <i class="ion-android-refresh"></i>&nbsp;
                   Actualizar Caixa</button>
             </div>
 
@@ -158,6 +165,8 @@
 
     $(function(){
 
+      //Buttons listeners
+
       $.each($(".toggle-box-btn"),function(){
         toggleSlideBox($(this));
       });
@@ -165,6 +174,74 @@
       $(".toggle-box-btn").click(function(){
         toggleSlideBox($(this));
       });
+
+      $(".issue-btn").click(function(e){
+        e.preventDefault();
+        addIssue($(this));
+      });
+
+      $(".option-btn").click(function(e){
+        e.preventDefault();
+        addOption($(this));
+      });
+
+      $(".option-btn").click(function(){
+        alert("adding option");
+      });
+
+      $(".update-btn").click(function(){
+        alert("updating caixa");
+
+        caixa = {
+            id: $("input[name='caixa-id']").val(),
+            nombre: $("input[name='caixa-nombre']").val(),
+            fecha_ini: ($("input[name='caixa-fecha_ini']").val() != "") ? $("input[name='caixa-fecha_ini']").val() : "0000-00-00",
+            fecha_fin: ($("input[name='caixa-fecha_fin']").val() != "") ? $("input[name='caixa-fecha_fin']").val() : "0000-00-00",
+            asuntos:[]
+        };
+
+        $.each($(".anIssue"),function(){
+            asunto = $(this).find("input[name='asunto-texto']");
+
+            asuntoObj = {
+                id: asunto.data("id"),
+                texto: asunto.val(),
+                opciones: []
+            };
+            
+            opciones = $(this).find(".daOptions");
+            
+            $.each(opciones.find(".collapsible"), function(){
+                opcion = {
+                    id: $(this).find("input[name='opcion-texto']").data("id"),
+                    tipo: $(this).find("select[name='tipoOpcion']").val(),
+                    texto: $(this).find("input[name='opcion-texto']").val()
+                };
+
+                asuntoObj.opciones.push(opcion);
+
+            });
+
+            caixa.asuntos.push(asuntoObj);
+        });
+
+        $.ajax({
+            method: "POST",
+            url: "<?php echo URL; ?>Caixa/edit/",
+            data: {caixa:caixa}
+        }).done(function(r){
+            console.log(r);
+            var response = JSON.parse(r);
+            if(response.error == 0){
+                <?php $this->reloadThis("Caixa/listar/"); ?>
+            }else{
+                alert("Error: "+response.msg);
+            }
+        });
+
+      });
+
+      // Slide Boxes Logic
 
       function toggleSlideBox(el){
         var box = el.parent().parent();
@@ -178,11 +255,7 @@
         }
       }
 
-      $(".issue-btn").click(function(e){
-        e.preventDefault();
-        addIssue($(this));
-      });
-
+      // Add Issues Button Action Logic
       function addIssue(el){
 
         var area = el.parent().parent();
@@ -204,10 +277,7 @@
 
       }
 
-      $(".option-btn").click(function(e){
-        e.preventDefault();
-        addOption($(this));
-      });
+      // Add Options Button Action Logic
 
       function addOption(el){
 
@@ -224,14 +294,6 @@
         });
 
       }
-
-      $(".option-btn").click(function(){
-        alert("adding option");
-      });
-
-      $(".update-btn").click(function(){
-        alert("updating caixa");
-      });
 
     });
 

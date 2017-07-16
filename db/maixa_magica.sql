@@ -296,68 +296,68 @@ INSERT INTO `caixa_magica`.`Caixa` (`id`, `nombre`, `fecha_ini`, `fecha_fin`) VA
 COMMIT;
 
 
--- -----------------------------------------------------
--- Data for table `caixa_magica`.`Asunto`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `caixa_magica`;
-INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (1, '¿Qué te llevas de ciudades que aprenden?', 1);
-INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (2, '¿Qué harías diferente en un próximo laboratorio ciudadano?', 1);
-INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (3, '¿Cómo mejorarías la experiencia de uso de Caixa Mágica?', 1);
-INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (4, '¿Estás enamorado de alguien de ciudades que aprenden?', 1);
+---- -----------------------------------------------------
+---- Data for table `caixa_magica`.`Asunto`
+---- -----------------------------------------------------
+--START TRANSACTION;
+--USE `caixa_magica`;
+--INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (1, '¿Qué te llevas de ciudades que aprenden?', 1);
+--INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (2, '¿Qué harías diferente en un próximo laboratorio ciudadano?', 1);
+--INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (3, '¿Cómo mejorarías la experiencia de uso de Caixa Mágica?', 1);
+--INSERT INTO `caixa_magica`.`Asunto` (`id`, `texto`, `Caixa_id`) VALUES (4, '¿Estás enamorado de alguien de ciudades que aprenden?', 1);--
 
-COMMIT;
+--COMMIT;--
+--
+
+---- -----------------------------------------------------
+---- Data for table `caixa_magica`.`OpcionAbierta`
+---- -----------------------------------------------------
+--START TRANSACTION;
+--USE `caixa_magica`;
+--INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (1, 'Me llevo...');
+--INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (2, 'Yo haría...');
+--INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (3, 'La mejoraría...');--
+
+--COMMIT;--
+--
+
+---- -----------------------------------------------------
+---- Data for table `caixa_magica`.`OpcionMultiple`
+---- -----------------------------------------------------
+--START TRANSACTION;
+--USE `caixa_magica`;
+--INSERT INTO `caixa_magica`.`OpcionMultiple` (`id`, `texto`) VALUES (1, 'Si');
+--INSERT INTO `caixa_magica`.`OpcionMultiple` (`id`, `texto`) VALUES (2, 'No');
+--INSERT INTO `caixa_magica`.`OpcionMultiple` (`id`, `texto`) VALUES (3, 'Tal vez');--
+
+--COMMIT;--
+--
+
+---- -----------------------------------------------------
+---- Data for table `caixa_magica`.`OpcionPila`
+---- -----------------------------------------------------
+--START TRANSACTION;
+--USE `caixa_magica`;
+--INSERT INTO `caixa_magica`.`OpcionPila` (`id`, `texto`, `votos`) VALUES (1, 'Monetariamente', 0);
+--INSERT INTO `caixa_magica`.`OpcionPila` (`id`, `texto`, `votos`) VALUES (2, 'No se pueden reparar', 0);
+--INSERT INTO `caixa_magica`.`OpcionPila` (`id`, `texto`, `votos`) VALUES (3, 'Las FARC deben ir a la carcel', 0);--
+
+--COMMIT;
 
 
--- -----------------------------------------------------
--- Data for table `caixa_magica`.`OpcionAbierta`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `caixa_magica`;
-INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (1, 'Me llevo...');
-INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (2, 'Yo haría...');
-INSERT INTO `caixa_magica`.`OpcionAbierta` (`id`, `texto`) VALUES (3, 'La mejoraría...');
+---- -----------------------------------------------------
+---- Data for table `caixa_magica`.`Asunto_has_opciones`
+---- -----------------------------------------------------
+--START TRANSACTION;
+--USE `caixa_magica`;
+--INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (1, 1, 1, NULL, NULL);
+--INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (2, 2, 2, NULL, NULL);
+--INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (3, 3, 3, NULL, NULL);
+--INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (4, 4, NULL, 1, NULL);
+--INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (5, 4, NULL, 2, NULL);
+--INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (6, 4, NULL, 3, NULL);--
 
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `caixa_magica`.`OpcionMultiple`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `caixa_magica`;
-INSERT INTO `caixa_magica`.`OpcionMultiple` (`id`, `texto`) VALUES (1, 'Si');
-INSERT INTO `caixa_magica`.`OpcionMultiple` (`id`, `texto`) VALUES (2, 'No');
-INSERT INTO `caixa_magica`.`OpcionMultiple` (`id`, `texto`) VALUES (3, 'Tal vez');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `caixa_magica`.`OpcionPila`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `caixa_magica`;
-INSERT INTO `caixa_magica`.`OpcionPila` (`id`, `texto`, `votos`) VALUES (1, 'Monetariamente', 0);
-INSERT INTO `caixa_magica`.`OpcionPila` (`id`, `texto`, `votos`) VALUES (2, 'No se pueden reparar', 0);
-INSERT INTO `caixa_magica`.`OpcionPila` (`id`, `texto`, `votos`) VALUES (3, 'Las FARC deben ir a la carcel', 0);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `caixa_magica`.`Asunto_has_opciones`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `caixa_magica`;
-INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (1, 1, 1, NULL, NULL);
-INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (2, 2, 2, NULL, NULL);
-INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (3, 3, 3, NULL, NULL);
-INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (4, 4, NULL, 1, NULL);
-INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (5, 4, NULL, 2, NULL);
-INSERT INTO `caixa_magica`.`Asunto_has_opciones` (`id`, `Asunto_id`, `OpcionAbierta_id`, `OpcionMultiple_id`, `OpcionPila_id`) VALUES (6, 4, NULL, 3, NULL);
-
-COMMIT;
+--COMMIT;
 
 
 -- -----------------------------------------------------
@@ -370,4 +370,3 @@ INSERT INTO `caixa_magica`.`TipoDato` (`id`, `tipo`) VALUES (2, 'VARCHAR');
 INSERT INTO `caixa_magica`.`TipoDato` (`id`, `tipo`) VALUES (3, 'DATE');
 
 COMMIT;
-

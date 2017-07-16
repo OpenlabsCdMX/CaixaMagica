@@ -27,6 +27,7 @@ class Caixa_bl {
   
   public function getAsuntos($id){
       $asuntos  = Asuntos_bl::getByCaixa($id);
+      //print_r($asuntos);
       foreach ($asuntos as $key => $asunto) {
           $asunto->opciones = Opciones_bl::getByAsunto($asunto->getId());
       }
@@ -36,5 +37,9 @@ class Caixa_bl {
   public function create($data){
       $caixa = new Caixa(null, $data["nombre"], $data["fecha_ini"], $data["fecha_fin"]);
       return $caixa->create();
+  }
+  
+  public function checkChanges($caixa){
+      
   }
 }

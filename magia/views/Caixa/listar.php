@@ -48,7 +48,7 @@
                     <table id="example1" class="table table-bordered table-striped dataTable fancy-table" role="grid" aria-describedby="example1_info">
                 <thead>
                   <tr role="row">
-                    <th colspan="9" style="text-align:center;" >Instrumento</th>
+                    <th colspan="9" style="text-align:center;" >Caixas Mágicas</th>
                   </tr>
                 </thead>
                 <thead>

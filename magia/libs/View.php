@@ -34,4 +34,39 @@ class View {
         }
     }
     
+    public function reloadThis($uri){
+      echo '$.ajax({
+                  method:"GET",
+                  url: "'.URL.$uri.'"
+            }).done(function(response){
+                  $("#asyncLoadArea").html(response);
+      });';
+    }
+    
+    public function loadModule($module,$params = []) {
+
+        $linkStyles = (isset($params["linkStyles"])) ? $params["linkStyles"] : false;
+        $stylesheets = "";
+        
+        if($linkStyles){
+          
+          $stylesheets = array_map(function($style){
+            return $this->linkStyle($style);
+          },$linkStyles);
+
+          $stylesheets = join("\n",$stylesheets);
+        }
+
+        if (file_exists(MODULE . $module . '.php')) {
+            require MODULE . $module . '.php';
+        } else {
+            die('Error, not valid Admin module: ' . $module . ' to load');
+        }
+    }
+
+    public function linkStyle($stylesheet){
+      $public = "public/styles/".$stylesheet.".css";
+      return '<link rel="stylesheet" href="'.URL.$public.'"/>';
+    }
+    
 }

@@ -48,4 +48,77 @@ class Caixa_controller extends Controller{
       $this->view->render($this,"editar","Caixa Mágica | Caixas");
     }
 
+    public function edit(){
+      $data = filter_input_array(INPUT_POST)["caixa"];
+      
+      if(is_null($data["id"]) || $data["id"] == ''){
+          $caixa = new Caixa($data["id"], $data["nombre"], $data["fecha_ini"], 
+              $data["fecha_fin"]);
+      }else{
+          //TODO: check changes to update just changed values
+          $caixa = Caixa::getById($data["id"]);
+          $caixa->setNombre($data["nombre"]);
+          $caixa->setFecha_ini($data["fecha_ini"]);
+          $caixa->setFecha_fin($data["fecha_fin"]);
+          $r = $caixa->update();
+      }
+      
+      foreach ($data["asuntos"] as $asunto) {
+          
+          if(is_null($asunto["id"]) || $asunto["id"] == ''){
+            $issue = new Asunto($asunto["id"], $asunto["texto"], $caixa->getId());
+            //TODO handle response $r = $asuntos[$key]->create();
+            $r = $issue->create();
+          }else{
+            $issue = Asunto::getById($asunto["id"]);
+            $issue->setTexto($asunto["texto"]);
+            //TODO handle response $r = $asuntos[$key]->update();
+            $r = $issue->update();
+          }
+
+          foreach ($asunto["opciones"] as $opcion) {
+            $optR = self::initOption($opcion,$issue);
+          }
+      }
+      //TODO: Return some kind of response based on response handlings
+      print(json_encode($r));
+    }
+    
+    private function initOption($optArr,$asunto){
+        
+        if(is_null($optArr["id"]) || $optArr["id"] == ''){
+            switch ($optArr["tipo"]) {
+                case "OpcionAbierta":
+                    $option = new OpcionAbierta($optArr["id"], $optArr["texto"]);
+                    //TODO: Handle $r
+                    $r = $option->create();
+                    $option->has_many("Asunto",$asunto);
+                    return $option->update();
+                case "OpcionMultiple":
+                    $option = new OpcionMultiple($optArr["id"], $optArr["texto"]);
+                    //TODO: Handle $r
+                    $r = $option->create();
+                    $option->has_many("Asunto",$asunto);
+                    return $option->update();
+                case "OpcionPila":
+                    //return new OpcionPila($optArr["id"], $optArr["texto"]);
+                    break;
+            }
+        }else{
+            switch ($optArr["tipo"]) {
+                case "OpcionAbierta":
+                    $option = OpcionAbierta::getById($optArr["id"]);
+                    $option->setTexto($optArr["texto"]);
+                    return $option->update();
+                case "OpcionMultiple":
+                    $option = OpcionMultiple::getById($optArr["id"]);
+                    $option->setTexto($optArr["texto"]);
+                    return $option->update();
+                case "OpcionPila":
+                    //return new OpcionPila($optArr["id"], $optArr["texto"]);
+                    break;
+            }        
+        }
+    }
+
 }

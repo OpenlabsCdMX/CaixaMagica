@@ -63,7 +63,8 @@ and open the template in the editor.
   cursor: pointer;
 }
 
-.fancy-table>thead>tr>th{
+.fancy-table>thead>tr>th,
+.fancy-table>tfoot>tr>th{
   text-align: center !important;
 }
 
@@ -74,3 +75,19 @@ and open the template in the editor.
 .fancy-option{
   font-size: 200% !important;
 }
+
+.issues-container{
+    border: 1px solid #00a65a !important;
+    border-top: 3px solid #00a65a !important;
+}
+
+.topic-container{
+    border: 1px solid #f39c12 !important;
+    border-top: 3px solid #f39c12 !important;
+}
+
+.option-container{
+    border: 1px solid #dd4b39 !important;
+    border-top: 3px solid #dd4b39 !important;
+}
+

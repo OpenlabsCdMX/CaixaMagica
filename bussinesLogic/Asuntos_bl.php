@@ -26,7 +26,7 @@ class Asuntos_bl {
   }
   
   public function getByCaixa($idCaixa){
-      return Asunto::getBy("Caixa_id",$idCaixa,true);
+      return Asunto::getBy("Caixa_id",$idCaixa);
   }
   
   public function getOptions($idAsunto){

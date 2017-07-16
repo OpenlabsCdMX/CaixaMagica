@@ -26,6 +26,26 @@ class Asunto extends Model {
           'join_with'=>'id'
           )
       );
+  
+  private $has_many = array(
+      'OpcionesAbiertas'=>array(
+          'class'=>'OpcionAbierta',
+          'my_key'=>'id',
+          'other_key'=>'id',
+          'join_as'=>'Asunto_id',
+          'join_with'=>'OpcionAbierta_id',
+          'join_table'=>'Asunto_has_opciones'
+          ),
+      'OpcionesMultiples'=>array(
+          'class'=>'OpcionMultiple',
+          'my_key'=>'id',
+          'other_key'=>'id',
+          'join_as'=>'Asunto_id',
+          'join_with'=>'OpcionMultiple_id',
+          'join_table'=>'Asunto_has_opciones'
+          )
+      );
+  
 
   function __construct($id, $texto, $Caixa_id) {
       $this->id = $id;
