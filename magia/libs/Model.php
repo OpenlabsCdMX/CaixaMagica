@@ -303,7 +303,7 @@ class Model {
 
     public static function getBy($field, $data, $all = false) {
         self::setTableForStaticCall();
-        print_r("some");
+        //print_r("some");
         $whereData = self::where($field, $data);
         if($all){
             $data = array_shift($whereData);
