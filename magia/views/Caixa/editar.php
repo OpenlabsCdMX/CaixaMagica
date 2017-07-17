@@ -119,15 +119,14 @@
                                     </div>
 
                         <?php endforeach; ?>
-                        </div>
-                                </form>
-                                
-                                <div class="box-footer">
+                        <div class="box-footer">
                                 <button class="option-btn btn-block btn-flat btn-danger" style="font-weight:bold;">
                                   <i class="ion-android-add-circle"></i>&nbsp;
                                   Agregar opción al Asunto</button>
                             </div>
-                            <!-- /.box -->
+                        </div>
+                                </form>
+                                
                             </div>
 
                             
@@ -183,10 +182,6 @@
       $(".option-btn").click(function(e){
         e.preventDefault();
         addOption($(this));
-      });
-
-      $(".option-btn").click(function(){
-        alert("adding option");
       });
 
       $(".update-btn").click(function(){

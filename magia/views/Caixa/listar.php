@@ -143,7 +143,13 @@
       var id = $(this).data("id");
       var r = confirm("De verdad quiere eliminar la Caixa "+id);
       if(r){
-        console.log("Eliminando caixa");
+        $.ajax({
+          url: "<?php echo URL; ?>Caixa/delete/"+id,
+          method:"GET"
+        }).done(function(r){
+          console.log(r);
+          <?php $this->reloadThis("Caixa/listar/"); ?>
+        });
       }
     });
 

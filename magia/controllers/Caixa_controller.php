@@ -63,6 +63,8 @@ class Caixa_controller extends Controller{
           $r = $caixa->update();
       }
       
+      //hotfix prevent null pointer at array position
+      if(!isset($data["asuntos"])){ $data["asuntos"] = []; }
       foreach ($data["asuntos"] as $asunto) {
           
           if(is_null($asunto["id"]) || $asunto["id"] == ''){
@@ -75,7 +77,9 @@ class Caixa_controller extends Controller{
             //TODO handle response $r = $asuntos[$key]->update();
             $r = $issue->update();
           }
-
+          
+          //hotfix prevent null pointer at array position
+          if(!isset($asunto["opciones"])){ $asunto["opciones"] = []; }
           foreach ($asunto["opciones"] as $opcion) {
             $optR = self::initOption($opcion,$issue);
           }
@@ -119,6 +123,23 @@ class Caixa_controller extends Controller{
                     break;
             }        
         }
+    }
+    
+    public function delete($id){
+        $caixa = Caixa::getById($id);
+        //getting all asuntos realated to this caixa
+        $asuntos = Asunto::getBy("Caixa_id",$id);
+        if(empty($asuntos)){ $asuntos = []; }
+        //print_r($asuntos);
+        foreach ($asuntos as $asunto) {
+        //delete all options related to this asunto then delete the asunto
+            Model::deleteHasMany("Asunto_has_opciones" ,"Asunto_id", $asunto->getId());
+            //TODO: Handle $r
+            $r = $asunto->delete();
+        }
+        //TODO: Handle $r
+        $r = $caixa->delete();
+        print(json_encode($r));
     }
 
 }
