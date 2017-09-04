@@ -78,6 +78,7 @@
             $("#loader").css("display","block");
           }
         }).done(function(r){
+            console.log(r);
           $("#loader").css("display","none");
           document.location.href = "<?php print(URL); ?>Index/gracias/?id="+$(".magicarousel li").data("id")+"&tipo="+$(".magicarousel li").data("tipo");
         });
