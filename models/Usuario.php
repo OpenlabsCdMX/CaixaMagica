@@ -22,24 +22,24 @@ class Usuario extends Model {
           'class'=>'OpcionAbierta',
           'my_key'=>'id',
           'other_key'=>'id',
-          'join_self_as'=>'Usuario_id',
-          'join_other_as'=>'OpcionAbierta_id',
+          'join_as'=>'Usuario_id',
+          'join_with'=>'OpcionAbierta_id',
           'join_table'=>'Respuestas'
           ),
       'RespuestasMultiples'=>array(
           'class'=>'OpcionMultiple',
           'my_key'=>'id',
           'other_key'=>'id',
-          'join_self_as'=>'Usuario_id',
-          'join_other_as'=>'OpcionMultiple_id',
+          'join_as'=>'Usuario_id',
+          'join_with'=>'OpcionMultiple_id',
           'join_table'=>'Respuestas'
           ),
       'RespuestasPila'=>array(
           'class'=>'OpcionPila',
           'my_key'=>'id',
           'other_key'=>'id',
-          'join_self_as'=>'Usuario_id',
-          'join_other_as'=>'OpcionPila_id',
+          'join_as'=>'Usuario_id',
+          'join_with'=>'OpcionPila_id',
           'join_table'=>'Respuestas'
           )
       );
